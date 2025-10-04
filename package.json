@@ -1,16 +1,13 @@
 {
-  "name": "click-app",
+  "name": "farcaster-click-counter",
   "version": "1.0.0",
-  "main": "frame_server.js",
+  "description": "Farcaster Frame Click Counter using Node.js and Express on Vercel.",
+  "main": "api/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^4.19.2"
   }
 }
