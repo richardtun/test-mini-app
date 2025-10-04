@@ -1,0 +1,19 @@
+# Thư mục chứa các gói thư viện (phải luôn bỏ qua!)
+/node_modules
+
+# File debug của npm/yarn
+npm-debug.log
+yarn-debug.log
+
+# Các file chứa biến môi trường nhạy cảm (quan trọng)
+.env
+.env.local
+
+# Thư mục output khi Vercel build (nếu có)
+.vercel
+/dist
+/build
+
+# File hệ điều hành (macOS, Windows,...)
+.DS_Store
+thumbs.db
