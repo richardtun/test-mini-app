@@ -10,7 +10,7 @@ const generateImageUrl = (count, isGameOver) => {
     let color = '2563EB'; // Màu xanh
     
     if (isGameOver) {
-        text = `COMPLETED! ${count} Lần`;
+        text = `COMPLETED! ${count} Count`;
         color = 'DC2626'; // Màu đỏ
     } else if (count === 0) {
         text = 'Begin count!';
@@ -53,7 +53,7 @@ const generateFrameHtml = (count, baseUrl) => {
         // Trạng thái Game Over: Chỉ hiển thị nút Reset
         // Post về trạng thái count=0 để bắt đầu lại
         html += `
-            <meta property="fc:frame:button:1" content="Chơi Lại" />
+            <meta property="fc:frame:button:1" content="Replay" />
             <meta property="fc:frame:post_url" content="${action}?count=0" />
             <meta property="fc:frame:button:1:action" content="post" />
         `;
@@ -129,4 +129,5 @@ app.get('/', (req, res) => {
 // Xuất ứng dụng Express (BẮT BUỘC cho Vercel Serverless Function)
 // Vercel sẽ tự động chạy ứng dụng này khi có request đến /api/index hoặc /
 export default app; 
+
 
