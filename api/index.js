@@ -6,14 +6,14 @@ const app = express();
 // Hàm này để tạo URL hình ảnh cho Frame.
 // Nó dùng placeholder service để tạo ảnh theo trạng thái game.
 const generateImageUrl = (count, isGameOver) => {
-    let text = `Số lần nhấp: ${count}`;
+    let text = `Click count: ${count}`;
     let color = '2563EB'; // Màu xanh
     
     if (isGameOver) {
-        text = `HOÀN THÀNH! ${count} Lần`;
+        text = `COMPLETED! ${count} Lần`;
         color = 'DC2626'; // Màu đỏ
     } else if (count === 0) {
-        text = 'Bắt đầu đếm!';
+        text = 'Begin count!';
         color = '10B981'; // Màu xanh lá
     }
 
@@ -61,7 +61,7 @@ const generateFrameHtml = (count, baseUrl) => {
         // Trạng thái đang chơi: Hiển thị nút Click
         // Post về trạng thái tiếp theo (nextCount)
         html += `
-            <meta property="fc:frame:button:1" content="Nhấp vào đây (${count}/${MAX_CLICKS})" />
+            <meta property="fc:frame:button:1" content="Click Here (${count}/${MAX_CLICKS})" />
             <meta property="fc:frame:post_url" content="${action}?count=${nextCount}" />
             <meta property="fc:frame:button:1:action" content="post" />
         `;
@@ -70,9 +70,9 @@ const generateFrameHtml = (count, baseUrl) => {
     html += `
     </head>
     <body>
-        <h1>Mini Game Farcaster đơn giản</h1>
-        <p>Đây là giao diện của máy chủ. Frame sẽ hiển thị trong Warpcast/Farcaster client.</p>
-        <p>Trạng thái hiện tại (Server side): ${count} / ${MAX_CLICKS}</p>
+        <h1>Simple Mini Game Farcaster</h1>
+        <p>This is server's UI. Frame will be displayed in Warpcast/Farcaster client.</p>
+        <p>Current state (Server side): ${count} / ${MAX_CLICKS}</p>
     </body>
     </html>
     `;
@@ -94,14 +94,14 @@ app.use('/api/index', (req, res) => {
     if (req.method === 'GET') {
         // Trường hợp 1: Frame được tải lần đầu (GET request)
         count = 0;
-        console.log('GET /api/index - Khởi tạo Frame (Count = 0)');
+        console.log('GET /api/index - Init Frame (Count = 0)');
     } else if (req.method === 'POST') {
         // Trường hợp 2: Người dùng nhấp nút (POST request)
         
         // Lấy trạng thái mới (newCount) từ query parameter trong URL
         // Ví dụ: /api/index?count=1
         count = parseInt(req.query.count || '0', 10);
-        console.log(`POST /api/index - Trạng thái mới: ${count}`);
+        console.log(`POST /api/index - New state: ${count}`);
     } else {
         // Phương thức không được hỗ trợ
         return res.status(405).send('Method Not Allowed');
@@ -129,3 +129,4 @@ app.get('/', (req, res) => {
 // Xuất ứng dụng Express (BẮT BUỘC cho Vercel Serverless Function)
 // Vercel sẽ tự động chạy ứng dụng này khi có request đến /api/index hoặc /
 export default app; 
+
